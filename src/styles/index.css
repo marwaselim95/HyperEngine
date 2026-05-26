@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Design Tokens — "Minimalist High-Tech" Dark
+   ───────────────────────────────────────────── */
+:root {
+  /* Background layers */
+  --color-bg-primary:    #0a0a0f;
+  --color-bg-secondary:  #0f0f18;
+  --color-surface:       #1a1a28;
+  --color-surface-hover: #1e1e30;
+
+  /* Borders */
+  --color-border:        rgba(255,255,255,0.08);
+  --color-border-hover:  rgba(255,255,255,0.16);
+
+  /* Text */
+  --color-primary:  #f0f0f8;
+  --color-muted:    rgba(240,240,248,0.45);
+
+  /* Accent — neon blue */
+  --color-accent:       #00D4FF;
+  --color-accent-hover: #33DDFF;
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(255,255,255,0.12);
+  --scrollbar-track: transparent;
+}
+
+/* ─── Tailwind v4 theme extension ─── */
+@theme {
+  --color-bg-primary:    var(--color-bg-primary);
+  --color-bg-secondary:  var(--color-bg-secondary);
+  --color-surface:       var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-border:        var(--color-border);
+  --color-border-hover:  var(--color-border-hover);
+  --color-primary:       var(--color-primary);
+  --color-muted:         var(--color-muted);
+  --color-accent:        var(--color-accent);
+  --color-accent-hover:  var(--color-accent-hover);
+
+  --shadow-glow:    0 0 12px rgba(0,212,255,0.25);
+  --shadow-glow-lg: 0 0 24px rgba(0,212,255,0.40);
+
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ─── Base resets ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Custom scrollbar ─── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 2px; }
+
+/* ─── Utility classes (not in Tailwind core) ─── */
+.shadow-glow    { box-shadow: var(--shadow-glow); }
+.shadow-glow-lg { box-shadow: var(--shadow-glow-lg); }
+.font-mono      { font-family: var(--font-family-mono); }
+
+/* ─── Animations ─── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pr-pop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in  { animation: fade-in  0.2s ease-out both; }
+.animate-slide-up { animation: slide-up 0.25s ease-out both; }
+.animate-pr-pop   { animation: pr-pop   0.35s cubic-bezier(.34,1.56,.64,1) both; }
+.animate-spin     { animation: spin     0.75s linear infinite; }
